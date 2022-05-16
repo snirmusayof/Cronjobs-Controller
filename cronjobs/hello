@@ -1,0 +1,4 @@
+# hello cronjob
+SHELL=/bin/bash
+
+0 */1 * * * root /usr/bin/python3 /var/home/tests/hello.py
