@@ -3,16 +3,23 @@ from flask import flask, request
 import os
 import base64
 from jinja2 import Template
+from flask_basicauth import BasicAuth
+
+USER = oc.getenv('USER')
+PASSWORD = oc.getenv('PASSWORD')
+SPLUNK_URL = oc.getenv('SPLUNK_URL')
+SPLUNK_TOKEN = oc.getenv('SPLUNK_TOKEN'
 
 app = Flask(__name__)
+
+app.config['BASIC_AUTH_USERNAME'] = USER
+app.config['BASIC_AUTH_PASSWORD'] = PASSWORD
 
 TESTS_DIRECTORY = "tests"
 CRONJOBS_DIRECTORY = "cronjobs"
 
-SPLUNK_URL = oc.getenv('SPLUNK_URL')
-SPLUNK_TOKEN = oc.getenv('SPLUNK_TOKEN')
-
 @app.get('/tests')
+@basic_auth.required
 def download_tests():
     tests = {}
     for filename in os.listdir(TESTS_DIRECTORY):
@@ -23,6 +30,7 @@ def download_tests():
     return json.dumps(tests)
 
 @app.get('/cronjobs')
+@basic_auth.required
 def download_cronjobs():
     cronjobs = {}
     for filename in os.listdir(CRONJOBS_DIRECTORY):
