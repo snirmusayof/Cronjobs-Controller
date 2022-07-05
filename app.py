@@ -15,6 +15,8 @@ app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = USER
 app.config['BASIC_AUTH_PASSWORD'] = PASSWORD
 
+basic_auth = BasicAuth(app)
+
 TESTS_DIRECTORY = "tests"
 CRONJOBS_DIRECTORY = "cronjobs"
 
