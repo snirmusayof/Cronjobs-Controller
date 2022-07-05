@@ -8,7 +8,7 @@ from flask_basicauth import BasicAuth
 USER = oc.getenv('USER')
 PASSWORD = oc.getenv('PASSWORD')
 SPLUNK_URL = oc.getenv('SPLUNK_URL')
-SPLUNK_TOKEN = oc.getenv('SPLUNK_TOKEN'
+SPLUNK_TOKEN = oc.getenv('SPLUNK_TOKEN')
 
 app = Flask(__name__)
 
